@@ -1,6 +1,6 @@
 
 
-Concepts: Logic Enhancement, ArrayList, Hashmap
+Concepts: Logic Enhancement, ArrayList, Hashmap, LinkedList
 
 Tools: Eclipse, LeetCode
 
