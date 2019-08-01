@@ -1,34 +1,32 @@
-package LeetCode; //Done
+package leetCode;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum_1 
 {
-   public static int[] twoSum(int[] nums, int target) 
-   {
-        HashMap<Integer, Integer> map = new HashMap<>();       
-        for (int i = 0; i < nums.length; i++)
-        {
-            map.put(nums[i], i);
-        }       
-        for (int i = 0; i < nums.length; i++)
-        {
-            int necessary = target - nums[i];           
-            if(map.containsKey(necessary) && i != map.get(necessary))
-                return new int[] {map.get(necessary), i};
-        }    
-        throw new IllegalArgumentException("No values add up to target");
-   }
-//       for(int i = 0; i < nums.length; i++)
-//       {
-//           for(int y = 0; y < nums.length; y++)
-//           {
-//               if((nums[i] + nums[y] == target) && i != y)
-//               {
-//                   int[] ans = {i, y};
-//                   return ans;
-//               }
-//           }
-//       }
-//       return nums;
+	public static void main(String[] args)
+	{
+		int[] nums = {15, 5, 16, 8, 9, 12};
+		int target = 13;
+		
+		int[] results = twoSum(nums, target);
+		
+		System.out.println(results[0] + " " + results[1]);
+	}
+	
+	public static int[] twoSum(int[] nums, int target) 
+	{
+		Map<Integer, Integer> map = new HashMap<>(); 
+		
+		for (int counter = 0; counter < nums.length; counter++)
+		{
+			int necessary = target - nums[counter];
+			if(map.containsKey(necessary))
+				return new int[] {map.get(necessary), counter};
+			
+			map.put(nums[counter], counter);
+		}
+		throw new IllegalArgumentException("No values add up to target");
+	}
 }
