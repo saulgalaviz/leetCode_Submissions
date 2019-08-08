@@ -12,35 +12,22 @@ public class MaximumProductSubarray_152
 	
 	public static int maxProduct(int[] nums) 
 	{
-        int maxProduct = 0;
-        int tempProduct = 0;
-        boolean emptyVar = true;
-        int tempNum = 0;
+		if(nums == null || nums.length == 0)
+			return 0;
+		
+		int highestValue = nums[0];
+        int maxProduct = nums[0];
+        int minProduct = nums[0];
+        int temp;
         
-        for(int counter = 0; counter < nums.length; counter++)
+        for(int counter = 1; counter < nums.length; counter++)
         {
-        	tempProduct = maxProduct;
-        	if(emptyVar)
-        	{
-        		tempNum = nums[counter];	
-        		emptyVar = false;
-        	}
+        	temp = maxProduct;
         	
-        	else if(tempProduct < tempProduct * nums[counter])
-        	{
-        		tempProduct *= nums[counter];
-        	}
-        	
-        	else if(!emptyVar)
-        	{
-        		tempProduct = nums[counter] * tempNum;
-        		emptyVar = true;
-        	}
-        		
-        	maxProduct = Math.max(tempProduct, maxProduct);
+        	maxProduct = Math.max(Math.max(maxProduct * nums[counter], minProduct * nums[counter]), nums[counter]);
+        	minProduct = Math.min(Math.min(temp * nums[counter], minProduct * nums[counter]), nums[counter]);
+        	highestValue = Math.max(maxProduct, highestValue);	
         }
-        
-        return maxProduct;
+        return highestValue;
     }
-
 }
